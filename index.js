@@ -22,14 +22,11 @@ app.listen(port, () => {
     console.log(`Servidor desplegado en puerto: ${port}`);
   });
   
-let concesionarios = [{nombre:"Concesionario1",direccion:"Calle Carlos",coches : [{modelo:"Opel Corsa",cv:"120",precio:"12000"}]},
-{nombre:"Coches.com",direccion:"Calle Falsa",coches : [{modelo:"Renault Clio",cv:"100",precio:"9000"},
-{modelo:"Nissan Skyline R34",cv:"110",precio:"11000"}]},
-{nombre:"CompraCoches",direccion:"Calle Alba",coches : [{modelo:"Hyundai i20",cv:"84",precio:"15465"},{modelo:"Volvo XC60",cv:"140",precio:"42615"},
-{modelo:"Nissan XTRAIL",cv:"204",precio:"46999"}]},
-{nombre:"Coches de ofertas",direccion:"Plaza Ocaso",coches : [{modelo:"Peugeot 3008",cv:"300",precio:"39600"},{modelo:"Fiat 500x",cv:"130",precio:"27380"},
-{modelo:"Mercedes-Benz clase T 180",cv:"116",precio:"37190"},{modelo:"Citroen C5",cv:"131",precio:"33487"}]}]
 
+let coches = [
+  { marca: "Renault", modelo: "Clio" },
+  { marca: "Nissan", modelo: "Skyline R34" },
+];
 
 
 // Lista todos los coches
