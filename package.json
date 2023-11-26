@@ -19,5 +19,7 @@
     "url": "https://github.com/AlejandroRaposo/proyectoDaweb,git/issues"
   },
   "homepage": "https://github.com/AlejandroRaposo/proyectoDaweb,git",
-  "keywords": []
+  "keywords": [],
+  "devDependencies": {}
+  
 }
