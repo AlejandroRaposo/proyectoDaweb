@@ -86,7 +86,7 @@ app.put("/concesionarios/:id", (request, response) => {
 // Borrar un concesionario
 app.delete("/concesionarios/:id", (request, response) => {
   const id = request.params.id;
-  concesionarios = concesionarios.filter((item) => concesionarios.indecOf(item) !== id);
+  concesionarios = concesionarios.filter((item) => concesionarios.indexOf(item) !== id);
   response.json({ message: "ok" });
 });
 
@@ -106,7 +106,7 @@ app.post("/concesionarios/:id/coches", (request, response) => {
 
 
 // Obtener un coche de un concesionario
-app.get("/concesionarios/:id/coches/:cocheid", (request, request, response) => {
+app.get("/concesionarios/:id/coches/:cocheid", (request, response) => {
   const id = request.params.id;
   const cocheid = request.params.cocheid;
   const result = concesionarios[id].coches[cocheid];
@@ -114,7 +114,7 @@ app.get("/concesionarios/:id/coches/:cocheid", (request, request, response) => {
 });
 
 // Actualizar un coche concreto de un  concesionario concreto
-app.put("/concesionarios/:id/coches/:cocheid", (request,request, response) => {
+app.put("/concesionarios/:id/coches/:cocheid", (request, response) => {
   const id = request.params.id;
   const cocheid = request.params.cocheid;
   concesionarios[id].coches[cocheid] = request.body;
@@ -122,10 +122,10 @@ app.put("/concesionarios/:id/coches/:cocheid", (request,request, response) => {
 });
 
 // Borrar un coche concreto de un concesionario
-app.delete("/concesionarios/:id/coches/:cocheid", (request, request, response) => {
+app.delete("/concesionarios/:id/coches/:cocheid", (request, response) => {
   const id = request.params.id;
   const cocheid = request.params.cocheid;
-  concesionarios = concesionarios.filter((item) => ((concesionarios.coches.indecOf(item) !== cocheid)
-   || (concesionarios.indecOf(item) !== id)));
+  concesionarios[id].coches = concesionarios[id].coches.filter((item) => 
+  ((concesionarios[id].coches.indexOf(item) !== cocheid)));
   response.json({ message: "ok" });
 });
