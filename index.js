@@ -8,6 +8,8 @@
 // Improtamos las librerías necesarías
 // Concretamente el framework express
 const express = require("express");
+const swaggerUi = require("swagger-ui-express");
+const swaggerDocument = require("./swagger.json");
 
 // Inicializamos a aplicación
 const app = express();
@@ -17,6 +19,9 @@ app.use(express.json());
 
 // Indicamos el puerto en el que vamos a desplegar la aplicación
 const port = process.env.PORT || 8080;
+
+//Configuración de swagger
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.listen(port, () => {
   console.log(`Servidor desplegado en puerto: ${port}`);
