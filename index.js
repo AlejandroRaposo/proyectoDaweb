@@ -9,6 +9,8 @@
 // Concretamente el framework express
 const express = require("express");
 const { MongoClient, ObjectId  } = require('mongodb');
+const swaggerUi = require("swagger-ui-express");
+const swaggerDocument = require("./swagger.json");
 // or as an es module:
 // import { MongoClient } from 'mongodb'
 
@@ -22,6 +24,9 @@ let database = undefined;
 let conCollection = undefined;
 
 
+
+
+
 // Inicializamos a aplicación
 const app = express();
 
@@ -30,6 +35,7 @@ app.use(express.json());
 
 // Indicamos el puerto en el que vamos a desplegar la aplicación
 const port = process.env.PORT || 8080;
+
 
 
 async function connexBD() {
@@ -51,6 +57,10 @@ connexBD().catch(console.error);
 
 
 app.use("/", express.json());
+
+//Configuración de swagger
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 
 app.listen(port, () => {
   console.log(`Servidor desplegado en puerto: ${port}`);
@@ -106,10 +116,6 @@ app.get("/concesionarios/:id", async (request, response) => {
 });
 
 // Actualizar un solo 
-
-
-
-
 
 
 app.put("/concesionarios/:id", async (request, response) => {
