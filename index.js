@@ -105,26 +105,39 @@ app.get("/concesionarios/:id", async (request, response) => {
   }
 });
 
-// Actualizar un solo concesionario
-app.put("/concesionarios/:id"), async (request, response) => {
+// Actualizar un solo 
+
+
+
+
+
+
+app.put("/concesionarios/:id", async (request, response) => {
+ 
   const conId = request.params.id;
+  
   const conAct = request.body;
+
   try {
+  
     const curorConcesionarios = await conCollection.find({});
-    const concesionarios = await curorConcesionarios.toArray();
-    let conce = concesionarios[conId];
-    let id = conce._id;
+    const conce = await curorConcesionarios.toArray();
+    let concesionario = conce[conId];
+    let id = concesionario._id;
     id = id.toString();
-    const concesionario = await conCollection.updateOne(
+    const resultado = await conCollection.updateOne(
       { _id: new ObjectId(id) },
       {
         $set: {
-          nombre: conAct["nombre"],
-          direccion: conAct["direccion"],
-          coches: conAct["coches"],
-        },
+          nombre:conAct["nombre"],
+          direccion:conAct["direccion"],
+          coches:conAct["coches"]
+        }
+         
+        
       }
     );
+
     if (resultado.modifiedCount < 1) {
       throw "Ninguna modificacion";
     }
@@ -134,7 +147,7 @@ app.put("/concesionarios/:id"), async (request, response) => {
     console.error(error);
     response.status(500).json({ error: error });
   }
-};
+});
 
 // Borrar un concesionario
 app.delete("/concesionarios/:id", async (request, response) => {
@@ -189,7 +202,7 @@ app.post("/concesionarios/:id/coches", async (request, response) => {
       { _id: new ObjectId(id) },
       {
         $push: {
-          coches: cocheNue,
+          coches: cocheNue
         },
       }
     );
@@ -244,6 +257,7 @@ app.put("/concesionarios/:id/coches/:cocheId", async (request, response) => {
   const cocheNue = request.body;
 
   try {
+  
     const curorConcesionarios = await conCollection.find({});
     const conce = await curorConcesionarios.toArray();
     let concesionario = conce[conId];
